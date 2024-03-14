@@ -1,10 +1,15 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
     ];
+
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  } ];
 
   boot = {
     loader = {
@@ -16,13 +21,14 @@
       timeout = 0;
     };
     initrd = {
-      kernelModules = [ "amdgpu" "zstd" "z3fold" ];
+      kernelModules = [ "amdgpu" "zstd" "z3fold" "i2c-dev" "ddcci_backlight" ];
       preDeviceCommands = ''
         printf zstd > /sys/module/zswap/parameters/compressor
         printf z3fold > /sys/module/zswap/parameters/zpool
       '';
       verbose = false;
     };
+    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
     consoleLogLevel = 0;
     kernelParams = [
       "quiet"
@@ -34,31 +40,25 @@
       enable = true;
       theme = "breeze";
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages;
   };
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16*1024;
-    }
-  ];
-
-  hardware.bluetooth.enable = true;
 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
     firewall.checkReversePath = false;
   };
-
   services.resolved.enable = true;
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   time.timeZone = "Asia/Vladivostok";
 
   i18n.defaultLocale = "ru_RU.UTF-8";
 
   i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ru_RU.UTF-8";
+    LC_IDENTIFICATION = "ru_RU.UTF-8";
     LC_MEASUREMENT = "ru_RU.UTF-8";
     LC_MONETARY = "ru_RU.UTF-8";
     LC_NAME = "ru_RU.UTF-8";
@@ -68,17 +68,30 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
 
-  users.users.vinso = {
-    isNormalUser = true;
-    description = "vinso";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [];
+
+  systemd.services.BiosSleepFix = {
+    enable = true;
+    description = "Gigabyte B550 F12 bios sleep bug workaround";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
+    };
   };
 
-  security.sudo.wheelNeedsPassword = false;
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock = {
+      enable = true;
+      ppfeaturemask = "0xffffffff";
+    };
+  };
+
   security.polkit = {
     enable = true;
     extraConfig = ''
@@ -93,48 +106,15 @@
       });
     '';
   };
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.config.allowUnfree = true;
-  
-  environment.systemPackages = with pkgs; [
-    git
-    xdg-utils
-    vscode
-    firefox
-    pavucontrol
-    (discord.override {withVencord = true;})
-    spotify
-    starship
-    telegram-desktop
-    android-tools
-    neofetch
-    protontricks
-    google-chrome
-    gnome3.gnome-tweaks
-    wineWowPackages.stable
-    winetricks
-    lutris
-  ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese
-    gnome-music
-    gedit
-    epiphany
-    geary
-    evince
-    gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-  ]);
+  programs.fish.enable = true;
+  programs.dconf.enable = true;
 
   fonts = {
     enableDefaultPackages = true;
@@ -142,46 +122,9 @@
       fira-code
       ubuntu_font_family
     ];
-    fontconfig = {
-      defaultFonts = {
-        serif = ["Ubuntu"];
-        sansSerif = ["Ubuntu"];
-        monospace = ["Ubuntu Mono"];
-      };
-    };
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-      };
-    };
-    desktopManager.plasma5 = {
-      enable = true;
-    };
-  };
-
-  systemd.services.BiosSleepFix = {
-    enable = true;
-    description = "Gigabyte B550 F12 bios sleep bug workaround";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
-    };
-  };
-
-  programs.fish.enable = true;
-  environment.shells = with pkgs; [ fish ];
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-  
+  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -192,15 +135,19 @@
     jack.enable = true;
   };
 
-  programs.dconf.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock = {
-      enable = true;
-      ppfeaturemask = "0xffffffff";
-    };
+  users.users.vinso = {
+    isNormalUser = true;
+    description = "Vinso";
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
   };
 
-  system.stateVersion = "23.05";
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment.systemPackages = with pkgs; [ git ];
+
+  system.stateVersion = "23.11";
 }
