@@ -15,7 +15,13 @@
     starship
     alacritty
     neofetch
+    android-tools
     nur.repos.pokon548.nekoray-bin
+    lutris
+    qbittorrent
+    wineWowPackages.stable
+    mangohud
+    protonup-qt
   ];
 
   programs.git = {

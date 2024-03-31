@@ -40,8 +40,10 @@
       enable = true;
       theme = "breeze";
     };
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_6_7;
   };
+
+  hardware.opengl.driSupport32Bit = true;
 
   networking = {
     hostName = "nixos";
@@ -69,9 +71,11 @@
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+  # services.xserver.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
 
   systemd.services.BiosSleepFix = {
@@ -112,6 +116,7 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+  programs.gamemode.enable = true;
 
   programs.fish.enable = true;
   programs.dconf.enable = true;
@@ -146,8 +151,13 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.substituters = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
 
-  environment.systemPackages = with pkgs; [ git ];
+  environment.systemPackages = with pkgs; [ 
+    git
+    gnome.gnome-tweaks
+    gnome.gnome-themes-extra
+  ];
 
   system.stateVersion = "23.11";
 }
