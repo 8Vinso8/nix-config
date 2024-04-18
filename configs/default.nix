@@ -2,5 +2,6 @@
   imports = [
     ./hypr
     ./alacritty
+    ./waybar
   ];
 }
