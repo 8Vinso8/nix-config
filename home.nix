@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./configs
+  ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
 
@@ -16,12 +19,15 @@
     alacritty
     neofetch
     android-tools
-    nur.repos.pokon548.nekoray-bin
     lutris
     qbittorrent
     wineWowPackages.stable
     mangohud
     protonup-qt
+    nekoray
+    wofi
+    libsForQt5.polkit-kde-agent
+    inputs.hyprland-contrib.packages."${pkgs.system}".grimblast
   ];
 
   programs.git = {

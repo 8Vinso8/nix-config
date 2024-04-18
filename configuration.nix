@@ -21,14 +21,14 @@
       timeout = 0;
     };
     initrd = {
-      kernelModules = [ "amdgpu" "zstd" "z3fold" "i2c-dev" "ddcci_backlight" ];
+      kernelModules = [ "amdgpu" "zstd" "z3fold" "i2c-dev" ];
       preDeviceCommands = ''
         printf zstd > /sys/module/zswap/parameters/compressor
         printf z3fold > /sys/module/zswap/parameters/zpool
       '';
       verbose = false;
     };
-    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
+    extraModulePackages = with config.boot.kernelPackages; [];
     consoleLogLevel = 0;
     kernelParams = [
       "quiet"
@@ -40,7 +40,7 @@
       enable = true;
       theme = "breeze";
     };
-    kernelPackages = pkgs.linuxPackages_6_7;
+    kernelPackages = pkgs.linuxPackages;
   };
 
   hardware.opengl.driSupport32Bit = true;
@@ -75,7 +75,7 @@
   # services.desktopManager.plasma6.enable = true;
   # services.xserver.displayManager.sddm.wayland.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  programs.hyprland.enable = true;
 
 
   systemd.services.BiosSleepFix = {
@@ -151,12 +151,9 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.substituters = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
 
   environment.systemPackages = with pkgs; [ 
     git
-    gnome.gnome-tweaks
-    gnome.gnome-themes-extra
   ];
 
   system.stateVersion = "23.11";
