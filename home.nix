@@ -29,6 +29,7 @@
     libsForQt5.polkit-kde-agent
     inputs.hyprland-contrib.packages."${pkgs.system}".grimblast
     hyprlock
+    hypridle
   ];
 
   programs.git = {
