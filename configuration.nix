@@ -21,7 +21,7 @@
       timeout = 0;
     };
     initrd = {
-      kernelModules = [ "amdgpu" "zstd" "z3fold" "i2c-dev" ];
+      kernelModules = [ "amdgpu" "zstd" "z3fold" ];
       preDeviceCommands = ''
         printf zstd > /sys/module/zswap/parameters/compressor
         printf z3fold > /sys/module/zswap/parameters/zpool
@@ -44,6 +44,7 @@
   };
 
   hardware.opengl.driSupport32Bit = true;
+  hardware.i2c.enable = true;
 
   networking = {
     hostName = "nixos";

@@ -32,6 +32,9 @@
     hypridle
     hyprpaper
     waybar
+    ddcutil
+    pavucontrol
+    pamixer
   ];
 
   programs.git = {
