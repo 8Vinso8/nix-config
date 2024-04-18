@@ -31,6 +31,7 @@
     hyprlock
     hypridle
     hyprpaper
+    waybar
   ];
 
   programs.git = {
