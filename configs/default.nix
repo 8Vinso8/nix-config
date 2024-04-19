@@ -3,5 +3,6 @@
     ./hypr
     ./alacritty
     ./waybar
+    ./fish
   ];
 }

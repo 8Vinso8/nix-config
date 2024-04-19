@@ -21,11 +21,7 @@
       timeout = 0;
     };
     initrd = {
-      kernelModules = [ "amdgpu" "zstd" "z3fold" ];
-      preDeviceCommands = ''
-        printf zstd > /sys/module/zswap/parameters/compressor
-        printf z3fold > /sys/module/zswap/parameters/zpool
-      '';
+      kernelModules = [ "amdgpu"];
       verbose = false;
     };
     extraModulePackages = with config.boot.kernelPackages; [];
@@ -34,7 +30,6 @@
       "quiet"
       "udev.log_level=3"
       "amd_pstate=passive"
-      "zswap.enabled=1"
     ];
     plymouth = {
       enable = true;
@@ -43,8 +38,10 @@
     kernelPackages = pkgs.linuxPackages;
   };
 
+  zramSwap.enable = true;
+
   hardware.opengl.driSupport32Bit = true;
-  hardware.i2c.enable = true;
+  hardware.i2c.enable = true; 
 
   networking = {
     hostName = "nixos";
@@ -72,9 +69,6 @@
   };
 
   services.xserver.enable = true;
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-  # services.xserver.displayManager.sddm.wayland.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   programs.hyprland.enable = true;
 
