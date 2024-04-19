@@ -79,6 +79,7 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = "yes";
       ExecStart = "/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
     };
   };

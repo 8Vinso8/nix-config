@@ -43,7 +43,7 @@
     enable = true;
     platformTheme = "gtk";
     style.name = "adwaita-dark";
-  }
+  };
 
   gtk = {
 
