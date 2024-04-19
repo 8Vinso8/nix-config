@@ -122,6 +122,7 @@
     packages = with pkgs; [
       fira-code
       ubuntu_font_family
+      (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
     ];
     fontconfig = {
       defaultFonts = {

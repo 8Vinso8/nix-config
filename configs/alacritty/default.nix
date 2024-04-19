@@ -90,6 +90,10 @@
       };
       font = {
         size = 16;
+        normal = {
+          family = "UbuntuMono Nerd Font";
+          style = "Regular";
+        };
       };
     };
   };

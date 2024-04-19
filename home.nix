@@ -37,8 +37,18 @@
     playerctl
     dunst
     uget
-    yazi
+    unrar
   ];
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      manager = {
+        show_hidden = true;
+      };
+    };
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
