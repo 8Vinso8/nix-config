@@ -123,6 +123,13 @@
       fira-code
       ubuntu_font_family
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Ubuntu" ];
+        sansSerif = [ "Ubuntu" ];
+        monospace = [ "Ubuntu Mono" ];
+      };
+    };
   };
 
   sound.enable = true;

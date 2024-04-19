@@ -39,6 +39,13 @@
     uget
   ];
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    size = 24;
+    name = "Adwaita";
+    package =  pkgs.gnome.adwaita-icon-theme;
+  };
+
   qt = {
     enable = true;
     platformTheme = "gtk";
@@ -46,7 +53,15 @@
   };
 
   gtk = {
-
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
+    };
   };
 
   programs.git = {

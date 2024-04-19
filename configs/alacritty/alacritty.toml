@@ -86,3 +86,6 @@ multiplier = 5
 [cursor]
 style = { shape = "Beam", blinking = "On"}
 thickness = 0.25
+
+[font]
+size = 16
