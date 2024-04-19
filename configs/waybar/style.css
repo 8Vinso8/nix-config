@@ -55,6 +55,7 @@ button:hover {
 #memory,
 #pulseaudio,
 #language,
+#idle_inhibitor,
 #tray {
   margin: 0 5px;
 }

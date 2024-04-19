@@ -17,6 +17,7 @@
             "tray"
             "cpu"
             "memory"
+            "idle_inhibitor"
             "pulseaudio"
             "hyprland/language"
             "clock"
@@ -45,6 +46,13 @@
         "hyprland/language" = {
             format-en= "EN";
             format-ru= "RU";
+        };
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "<span foreground='#f38ba8'>IDLE</span>";
+            deactivated = "IDLE";
+          };
         };
       };
     };

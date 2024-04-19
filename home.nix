@@ -70,6 +70,11 @@
     userEmail = "8vinso8@gmail.com";
   };
 
+  home.file.".steam/steam/steam_dev.cfg".text = ''
+    @nClientDownloadEnableHTTP2PlatformLinux 0
+    @fDownloadRateImprovementToAddAnotherConnection 1.0
+  '';
+
   xdg.configFile."pipewire/pipewire.conf.d/10-split.conf".text = ''
     context.modules = [
         {   name = libpipewire-module-loopback
