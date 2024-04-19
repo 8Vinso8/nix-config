@@ -98,6 +98,7 @@
       windowrulev2 = workspace 6, class:steam_app_[0-9]+
 
       windowrulev2 = immediate, class:^(steam_app_1091500)$ # Cp2077
+      #windowrulev2 = fullscreen, class:^(steam_app_284160)$ # BeamNG
 
       $mainMod = SUPER
 
@@ -105,7 +106,8 @@
       bind = $mainMod, C, killactive, 
       bind = $mainMod, M, exit, 
       bind = $mainMod, E, exec, $fileManager
-      bind = $mainMod, V, togglefloating, 
+      bind = $mainMod, V, togglefloating,
+      bind = $mainMod, F, fullscreen, 
       bind = $mainMod, R, exec, $menu
 
       bind = $mainMod, left, movefocus, l
