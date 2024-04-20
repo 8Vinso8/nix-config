@@ -14,7 +14,6 @@
     (pkgs.discord.override {
       withVencord = true;
     }) 
-    spotify
     alacritty
     neofetch
     android-tools
@@ -38,7 +37,24 @@
     dunst
     uget
     unrar
+    spotify
+    libsecret
   ];
+
+  services.spotifyd = {
+    enable = true;
+    package = (pkgs.spotifyd.override { withKeyring = true; });
+    settings = {
+      global = {
+        username = "p2xr5csvoc430v7bklao1mfa6";
+        use_keyring = true;
+        backend = "pulseaudio";
+        device_name = "spotifyd";
+        device_type = "computer";
+        bitrate = 320;
+      };
+    };
+  };
 
   programs.yazi = {
     enable = true;

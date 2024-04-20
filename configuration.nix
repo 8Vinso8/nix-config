@@ -72,6 +72,9 @@
   services.xserver.displayManager.gdm.enable = true;
   programs.hyprland.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.vinso.enableGnomeKeyring = true;
+  programs.seahorse.enable = true;
 
   systemd.services.BiosSleepFix = {
     enable = true;

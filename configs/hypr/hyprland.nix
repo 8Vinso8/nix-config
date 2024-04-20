@@ -92,13 +92,14 @@
       windowrulev2 = idleinhibit always, fullscreen:1
       windowrulev2 = float,class:^(pavucontrol)$
       windowrulev2 = float,class:^(org.pipewire.Helvum)$
-      windowrulev2 = workspace 9 silent,class:^(Spotify)$
       windowrulev2 = workspace 8 silent,class:^(discord)$
       windowrulev2 = workspace 7 silent,class:^(steam)$
       windowrulev2 = workspace 6, class:steam_app_[0-9]+
 
       windowrulev2 = immediate, class:^(steam_app_1091500)$ # Cp2077
-      #windowrulev2 = fullscreen, class:^(steam_app_284160)$ # BeamNG
+
+      windowrulev2 = float,class:^(steam)$,title:^(Steam Settings)$
+
 
       $mainMod = SUPER
 
@@ -143,11 +144,11 @@
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
-      bind =, XF86AudioPlay, exec, playerctl play-pause
-      bind =, XF86AudioNext, exec, playerctl next
-      bind =, XF86AudioPrev, exec, playerctl previous
-      bind =, XF86AudioRaiseVolume, exec, playerctl volume 0.05+
-      bind =, XF86AudioLowerVolume, exec, playerctl volume 0.05-
+      bind =, XF86AudioPlay, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.PlayPause"
+      bind =, XF86AudioNext, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.Next"
+      bind =, XF86AudioPrev, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.Previous"
+      #bind =, XF86AudioRaiseVolume, exec, playerctl volume 0.05+
+      #bind =, XF86AudioLowerVolume, exec, playerctl volume 0.05-
 
       bind =, XF86AudioMute, exec, pamixer --default-source -t
 
