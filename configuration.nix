@@ -35,7 +35,7 @@
       enable = true;
       theme = "breeze";
     };
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   zramSwap.enable = true;
@@ -49,6 +49,8 @@
     firewall.checkReversePath = false;
   };
   services.resolved.enable = true;
+
+  services.flatpak.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -114,8 +116,11 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+    extest.enable = true;
   };
   programs.gamemode.enable = true;
+  programs.gamescope.enable = true;
 
   programs.fish.enable = true;
   programs.dconf.enable = true;
