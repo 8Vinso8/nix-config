@@ -37,7 +37,6 @@
     dunst
     uget
     unrar
-    spotify
     libsecret
   ];
 
@@ -55,6 +54,8 @@
       };
     };
   };
+
+  home.file."wallpapers/wall1.png".source = ./wallpapers/wallpaper.png;
 
   programs.yazi = {
     enable = true;

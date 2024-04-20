@@ -14,7 +14,6 @@
       monitor=,preferred,auto,1
 
       $terminal = alacritty
-      $fileManager = dolphin
       $menu = wofi --show drun
 
       exec-once=hypridle
@@ -23,7 +22,7 @@
       exec-once=dunst
       exec-once=corectrl
       exec-once=discord
-      exec-once=spotify
+      exec-once=nekoray -tray
 
       env = XCURSOR_SIZE,24
       env = GDK_BACKEND,wayland,x11
@@ -106,7 +105,6 @@
       bind = $mainMod, Q, exec, $terminal
       bind = $mainMod, C, killactive, 
       bind = $mainMod, M, exit, 
-      bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, V, togglefloating,
       bind = $mainMod, F, fullscreen, 
       bind = $mainMod, R, exec, $menu
