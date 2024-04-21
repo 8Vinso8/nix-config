@@ -40,6 +40,8 @@
     libsecret
   ];
 
+  #Use this to store spotify credentials
+  # secret-tool store --label='name you choose' application rust-keyring service spotifyd username <your-username>
   services.spotifyd = {
     enable = true;
     package = (pkgs.spotifyd.override { withKeyring = true; });
