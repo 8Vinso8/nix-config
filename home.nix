@@ -40,6 +40,11 @@
     libsecret
   ];
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   #Use this to store spotify credentials
   # secret-tool store --label='name you choose' application rust-keyring service spotifyd username <your-username>
   services.spotifyd = {
