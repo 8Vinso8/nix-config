@@ -9,6 +9,7 @@
   swapDevices = [ {
     device = "/var/lib/swapfile";
     size = 16*1024;
+    priority = 0;
   } ];
 
   boot = {
