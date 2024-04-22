@@ -23,6 +23,7 @@
       exec-once=corectrl
       exec-once=discord
       exec-once=nekoray -tray
+      exec-once=spotify
 
       env = XCURSOR_SIZE,24
       env = GDK_BACKEND,wayland,x11
@@ -94,6 +95,7 @@
       windowrulev2 = workspace 8 silent,class:^(discord)$
       windowrulev2 = workspace 7 silent,class:^(steam)$
       windowrulev2 = workspace 6, class:steam_app_[0-9]+
+      windowrulev2 = workspace 5 silent,class:^(Spotify)$
 
       windowrulev2 = immediate, class:^(steam_app_1091500)$ # Cp2077
 
@@ -142,11 +144,11 @@
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
-      bind =, XF86AudioPlay, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.PlayPause"
-      bind =, XF86AudioNext, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.Next"
-      bind =, XF86AudioPrev, exec, dbus-send --print-reply --dest="org.mpris.MediaPlayer2.spotifyd.instance$(pgrep spotifyd)" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.Previous"
-      #bind =, XF86AudioRaiseVolume, exec, playerctl volume 0.05+
-      #bind =, XF86AudioLowerVolume, exec, playerctl volume 0.05-
+      bind =, XF86AudioPlay, exec, playerctl play-pause
+      bind =, XF86AudioNext, exec, playerctl next
+      bind =, XF86AudioPrev, exec, playerctl previous
+      bind =, XF86AudioRaiseVolume, exec, playerctl volume 0.05+
+      bind =, XF86AudioLowerVolume, exec, playerctl volume 0.05-
 
       bind =, XF86AudioMute, exec, pamixer --default-source -t
 

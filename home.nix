@@ -17,7 +17,6 @@
     alacritty
     neofetch
     android-tools
-    lutris
     qbittorrent
     wineWowPackages.stable
     mangohud
@@ -38,6 +37,7 @@
     uget
     unrar
     libsecret
+    spotify
   ];
 
   programs.neovim = {
@@ -47,20 +47,28 @@
 
   #Use this to store spotify credentials
   # secret-tool store --label='name you choose' application rust-keyring service spotifyd username <your-username>
-  services.spotifyd = {
-    enable = true;
-    package = (pkgs.spotifyd.override { withKeyring = true; });
-    settings = {
-      global = {
-        username = "p2xr5csvoc430v7bklao1mfa6";
-        use_keyring = true;
-        backend = "pulseaudio";
-        device_name = "spotifyd";
-        device_type = "computer";
-        bitrate = 320;
-      };
-    };
-  };
+  # services.spotifyd = {
+  #   enable = true;
+  #   package = (pkgs.spotifyd.override {
+  #     withKeyring = true; 
+  #     withMpris = true;
+  #     withPulseAudio = true;
+  #   });
+  #   settings = {
+  #     global = {
+  #       username = "p2xr5csvoc430v7bklao1mfa6";
+  #       use_keyring = true;
+  #       backend = "pulseaudio";
+  #       device_name = "spotifyd";
+  #       device_type = "computer";
+  #       bitrate = 320;
+  #       use_mpris = true;
+  #       dbus_type = "session";
+  #       volume_normalisation = false;
+  #       autoplay = true;
+  #     };
+  #   };
+  # };
 
   home.file."wallpapers/wall1.png".source = ./wallpapers/wallpaper.png;
 
