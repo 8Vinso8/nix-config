@@ -25,6 +25,8 @@
       exec-once=nekoray -tray
       exec-once=spotify
 
+      exec-once=ddcutil setvcp 10 50
+
       env = XCURSOR_SIZE,24
       env = GDK_BACKEND,wayland,x11
       env = QT_QPA_PLATFORM,wayland;xcb
