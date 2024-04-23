@@ -38,6 +38,7 @@
     unrar
     libsecret
     spotify
+    protontricks
   ];
 
   programs.neovim = {
