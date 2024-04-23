@@ -41,7 +41,10 @@
 
   zramSwap.enable = true;
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    driSupport = true;
+    driSupport32Bit = true;
+  };
   hardware.i2c.enable = true; 
 
   networking = {
@@ -72,7 +75,11 @@
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.displayManager.sddm = {
+    enable =true;
+    wayland.enable = true;
+  };
   programs.hyprland.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
