@@ -15,7 +15,7 @@
       withVencord = true;
     }) 
     alacritty
-    neofetch
+    fastfetch
     android-tools
     qbittorrent
     wineWowPackages.stable
@@ -39,6 +39,7 @@
     libsecret
     spotify
     protontricks
+    nix-prefetch-github
   ];
 
   programs.neovim = {
