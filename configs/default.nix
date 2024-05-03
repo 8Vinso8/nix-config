@@ -4,5 +4,6 @@
     ./alacritty
     ./waybar
     ./fish
+    ./fastfetch
   ];
 }
