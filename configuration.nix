@@ -131,6 +131,7 @@
   programs.gamescope.enable = true;
 
   programs.fish.enable = true;
+  
   programs.dconf.enable = true;
 
   fonts = {
@@ -174,6 +175,9 @@
 
   environment.systemPackages = with pkgs; [ 
     git
+    libnotify
+    glib
+    python3
   ];
 
   system.stateVersion = "23.11";
