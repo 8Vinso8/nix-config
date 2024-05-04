@@ -18,7 +18,6 @@
     fastfetch
     android-tools
     qbittorrent
-    wineWowPackages.stable
     mangohud
     protonup-qt
     nekoray
@@ -41,6 +40,7 @@
     protontricks
     nix-prefetch-github
     killall
+    bottles
   ];
 
   programs.neovim = {

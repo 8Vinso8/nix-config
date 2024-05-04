@@ -184,6 +184,8 @@
     libnotify
     glib
     python3
+    wineWowPackages.stable
+    wineasio
   ];
 
   system.stateVersion = "23.11";

@@ -9,7 +9,7 @@ window#waybar {
   color: #ffffff;
   transition-property: background-color;
   transition-duration: .5s;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 button {
@@ -53,8 +53,9 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#language,
 #mpd {
-  padding: 0 10px;
+  padding: 0 5px;
   color: #ffffff;
 }
 
