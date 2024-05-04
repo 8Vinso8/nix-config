@@ -7,12 +7,9 @@
     settings = {
       mainBar = {
         layer = "top";
-        margin-top = 5;
-        margin-left = 5;
-        margin-right = 5;
-        margin-bottom = 5;
+        margin = "10";
         modules-left = [ "hyprland/workspaces" ];
-        modules-center= [];
+        modules-center= [ "hyprland/window" ];
         modules-right= [
             "tray"
             "cpu"
@@ -42,6 +39,7 @@
             format-source-muted = "<span foreground='#f38ba8'>MIC</span>";
             on-scroll-up = "";
             on-scroll-down = "";
+            tooltip = false;
         };
         "hyprland/language" = {
             format-en= "EN";

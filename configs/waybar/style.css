@@ -1,15 +1,15 @@
 * {
-  font-family: Ubuntu;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-  min-height: 20px;
-  color: #cdd6f4;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: "Ubuntu Nerd Font";
 }
 
 window#waybar {
-  background-color: transparent;
+  background-color: rgba(43, 48, 59, 1);
+  border-radius: 10px;
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: .5s;
+  font-size: 18px;
 }
 
 button {
@@ -23,49 +23,56 @@ button:hover {
 
 #workspaces button {
   padding: 0 5px;
-  background-color: transparent;
 }
 
 #workspaces button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-#workspaces button:hover:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
-#workspaces button:hover:last-child {
-  border-radius:0 5px 5px 0;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.active {
-  background-color: #6c7086;
+  background-color: #64727D;
 }
 
-#workspaces button.active:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
-#workspaces button.active:last-child {
-  border-radius:0 5px 5px 0;
+#workspaces button:first-child {
+  border-radius: 10px 0  0 10px;
 }
 
 #clock,
+#battery,
 #cpu,
 #memory,
+#disk,
+#temperature,
+#backlight,
+#network,
 #pulseaudio,
-#language,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
 #idle_inhibitor,
-#tray {
-  margin: 0 5px;
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+  padding: 0 10px;
+  color: #ffffff;
 }
 
-#language {
-  min-width: 16px;
+#window,
+#workspaces {
+  margin: 0 4px;
 }
 
-.modules-left,
-.modules-right {
-  background-color: #1e1e2e;
-  border-radius: 5px;
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#tray menu {
+  font-size: 14px;
 }
