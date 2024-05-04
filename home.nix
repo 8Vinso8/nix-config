@@ -73,7 +73,7 @@
   #   };
   # };
 
-  home.file."wallpapers/wall1.png".source = ./wallpapers/wallpaper.png;
+  home.file."wallpapers/wall1.jpg".source = ./wallpapers/wallpaper.jpg;
 
   programs.yazi = {
     enable = true;

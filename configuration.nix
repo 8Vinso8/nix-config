@@ -76,6 +76,10 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
+  environment.variables = {
+    VDPAU_DRIVER = "radeonsi";
+  };
+
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.displayManager.sddm = {
