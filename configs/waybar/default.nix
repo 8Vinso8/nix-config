@@ -21,6 +21,7 @@
         ];
         "tray" = {
             spacing = 10;
+            icon-size = 20;
         };
         "clock"= {
             format = "{:%d.%m.%y | %H:%M}";
