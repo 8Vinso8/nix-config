@@ -40,6 +40,7 @@
     spotify
     protontricks
     nix-prefetch-github
+    killall
   ];
 
   programs.neovim = {
@@ -87,8 +88,8 @@
   home.pointerCursor = {
     gtk.enable = true;
     size = 24;
-    name = "Adwaita";
-    package =  pkgs.gnome.adwaita-icon-theme;
+    name = "phinger-cursors-dark";
+    package =  pkgs.phinger-cursors;
   };
 
   qt = {
