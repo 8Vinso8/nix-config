@@ -22,21 +22,23 @@
       timeout = 0;
     };
     initrd = {
-      kernelModules = [ "amdgpu"];
+      kernelModules = [ "amdgpu" ];
       verbose = false;
     };
+    kernelModules = [];
     extraModulePackages = with config.boot.kernelPackages; [];
     consoleLogLevel = 0;
     kernelParams = [
       "quiet"
+      "splash"
       "udev.log_level=3"
-      "amd_pstate=passive"
+      "amd_pstate=active"
     ];
     plymouth = {
       enable = true;
       theme = "breeze";
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
   };
 
   zramSwap.enable = true;
@@ -139,7 +141,7 @@
     packages = with pkgs; [
       fira-code
       ubuntu_font_family
-      (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+      (nerdfonts.override { fonts = [ "UbuntuMono" "Ubuntu" ]; })
     ];
     fontconfig = {
       defaultFonts = {
